@@ -68,6 +68,7 @@ button.inventory {
   border: 1px solid #fff;
   background-color: #000;
 }
+
 div.world .row {
   display: flex;
   flex-direction: row;
@@ -82,22 +83,29 @@ div.world .row div[cloud] {
   background-color: #fff;
 }
 
-div.world .row div[ground] {
+div.world .row div[ground],
+.ground {
   background: url('./images/ground.jpg') no-repeat center center/cover;
 }
-div.world .row div[grass] {
+div.world .row div[grass],
+.grass {
   background: url('./images/grass.jpg') no-repeat center center/cover;
 }
-div.world .row div[stone] {
+div.world .row div[stone],
+.stone {
   background: url('./images/stone.jpg') no-repeat center center/cover;
 }
-div.world .row div[treetrunk] {
+div.world .row div[treetrunk],
+.treetrunk {
   background: url('./images/treetrunk.png') no-repeat center center/cover;
 }
-div.world .row div[leafs] {
+div.world .row div[leafs],
+.leafs {
   background: url('./images/leafs.jpg') no-repeat center center/cover;
 }
 
 .active {
   outline: 2px solid red;
+}
+.topOnStack {
 }

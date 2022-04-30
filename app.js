@@ -9,6 +9,9 @@ const axe = document.querySelector('.tool[AXE]');
 const bank = document.querySelector('.inventory[bank]');
 pickaxe.classList.add('active');
 
+// const matrix = Array.from(document.querySelectorAll('.row'));
+// console.log(matrix);
+
 function removeActive() {
   switch (currentTool) {
     case 'PICKAXE':
@@ -26,6 +29,23 @@ function removeActive() {
     default:
       break;
   }
+}
+
+function canRemove(cell) {
+  if (cell?.nextElementSibling?.attributes.length === 0) return true;
+  if (cell?.previousElementSibling?.attributes.length === 0) return true;
+  const index = [...cell.parentNode.children].indexOf(cell);
+  const above = cell?.parentNode?.previousElementSibling?.querySelector(
+    `:nth-child(${index + 1})`
+  );
+  if (above.attributes.length === 0) return true;
+
+  const beneath = cell?.parentNode?.nextElementSibling?.querySelector(
+    `:nth-child(${index + 1})`
+  );
+  if (beneath.attributes.length === 0) return true;
+
+  return false;
 }
 
 pickaxe.addEventListener('click', function () {
@@ -69,15 +89,44 @@ cells.forEach((cell) =>
 
       switch (currentTool) {
         case 'PICKAXE':
-          if (itsStone) this.removeAttribute('stone');
+          if (canRemove(this) && itsStone) {
+            this.removeAttribute('stone');
+            bankStack.push('stone');
+            bank.style.background =
+              "url('./images/stone.jpg') no-repeat center center/cover";
+          }
           break;
         case 'SHOVEL':
-          if (itsGrass) this.removeAttribute('grass');
-          if (itsGround) this.removeAttribute('ground');
+          if (canRemove(this)) {
+            if (itsGrass) {
+              this.removeAttribute('grass');
+              bankStack.push('grass');
+              bank.style.background =
+                "url('./images/grass.jpg') no-repeat center center/cover";
+            }
+            if (itsGround) {
+              this.removeAttribute('ground');
+              bankStack.push('ground');
+              bank.style.background =
+                "url('./images/ground.jpg') no-repeat center center/cover";
+            }
+          }
           break;
         case 'AXE':
-          if (itsLeaf) this.removeAttribute('leafs');
-          if (itsTreetrunk) this.removeAttribute('treetrunk');
+          if (canRemove(this)) {
+            if (itsLeaf) {
+              this.removeAttribute('leafs');
+              bankStack.push('leafs');
+              bank.style.background =
+                "url('./images/leafs.jpg') no-repeat center center/cover";
+            }
+            if (itsTreetrunk) {
+              this.removeAttribute('treetrunk');
+              bankStack.push('treetrunk');
+              bank.style.background =
+                "url('./images/treetrunk.png') no-repeat center center/cover";
+            }
+          }
           break;
         default:
           console.log('no such tool!');
