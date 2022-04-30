@@ -30,7 +30,22 @@ function removeActive() {
       break;
   }
 }
+function canPlace(cell) {
+  if (cell?.nextElementSibling?.attributes.length > 0) return true;
+  if (cell?.previousElementSibling?.attributes.length > 0) return true;
+  const index = [...cell.parentNode.children].indexOf(cell);
+  const above = cell?.parentNode?.previousElementSibling?.querySelector(
+    `:nth-child(${index + 1})`
+  );
+  if (above.attributes.length > 0) return true;
 
+  const beneath = cell?.parentNode?.nextElementSibling?.querySelector(
+    `:nth-child(${index + 1})`
+  );
+  if (beneath.attributes.length > 0) return true;
+
+  return false;
+}
 function canRemove(cell) {
   if (cell?.nextElementSibling?.attributes.length === 0) return true;
   if (cell?.previousElementSibling?.attributes.length === 0) return true;
@@ -133,6 +148,20 @@ cells.forEach((cell) =>
       }
     } else {
       // bank mode
+      if (
+        this.attributes.length === 0 &&
+        bankStack.length > 0 &&
+        canPlace(this)
+      ) {
+        const c = bankStack.pop();
+        this.setAttribute(c, '');
+        bank.style.background =
+          bankStack.length === 0
+            ? ''
+            : `url('./images/${
+                bankStack[bankStack.length - 1]
+              }.jpg') no-repeat center center/cover`;
+      }
     }
   })
 );
