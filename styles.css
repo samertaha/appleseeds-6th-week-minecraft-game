@@ -97,3 +97,7 @@ div.world .row div[treetrunk] {
 div.world .row div[leafs] {
   background: url('./images/leafs.jpg') no-repeat center center/cover;
 }
+
+.active {
+  outline: 2px solid red;
+}

@@ -3,31 +3,57 @@ const { log } = console;
 let currentTool = 'PICKAXE';
 toolMode = true;
 let bankStack = [];
-
 const pickaxe = document.querySelector('.tool[PICKAXE]');
+const shovel = document.querySelector('.tool[SHOVEL]');
+const axe = document.querySelector('.tool[AXE]');
+const bank = document.querySelector('.inventory[bank]');
+pickaxe.classList.add('active');
+
+function removeActive() {
+  switch (currentTool) {
+    case 'PICKAXE':
+      pickaxe.classList.remove('active');
+      break;
+    case 'SHOVEL':
+      shovel.classList.remove('active');
+      break;
+    case 'AXE':
+      axe.classList.remove('active');
+      break;
+    case 'BANK':
+      bank.classList.remove('active');
+      break;
+    default:
+      break;
+  }
+}
 
 pickaxe.addEventListener('click', function () {
   toolMode = true;
+  removeActive();
   currentTool = 'PICKAXE';
+  this.classList.add('active');
 });
-const shovel = document.querySelector('.tool[SHOVEL]');
 
 shovel.addEventListener('click', function () {
   toolMode = true;
+  removeActive();
   currentTool = 'SHOVEL';
+  this.classList.add('active');
 });
-const axe = document.querySelector('.tool[AXE]');
 
 axe.addEventListener('click', function () {
   toolMode = true;
+  removeActive();
   currentTool = 'AXE';
+  this.classList.add('active');
 });
-
-const bank = document.querySelector('.inventory[bank]');
 
 bank.addEventListener('click', function () {
   toolMode = false;
-  alert(' bank tool clicked');
+  removeActive();
+  currentTool = 'BANK';
+  this.classList.add('active');
 });
 
 const cells = document.querySelectorAll('.world .row div');
