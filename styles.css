@@ -1,0 +1,99 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #fff;
+  font-family: 'Courier New', Courier, monospace;
+}
+div.container {
+  display: flex;
+  height: 100vh;
+}
+div.left {
+  flex: 1;
+}
+div.right {
+  flex: 1;
+}
+div.world {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  background-color: #8cbffb;
+  height: 100%;
+}
+
+div.tools {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  background-color: #000;
+  color: white;
+  padding-top: 20px;
+  gap: 5px;
+}
+
+/* ------------------------------------------------- */
+button.tool {
+  background-color: #000;
+  width: 100px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+  padding: 10px 5px;
+  cursor: pointer;
+  border: 1px solid white;
+}
+button.tool img {
+  flex: 3;
+  width: 100%;
+  object-fit: fill;
+}
+button.tool h3 {
+  flex: 1;
+  text-align: center;
+  color: white;
+}
+/* ------------------------------------------------------------------ */
+button.inventory {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #fff;
+  background-color: #000;
+}
+div.world .row {
+  display: flex;
+  flex-direction: row;
+  height: calc(100vh / 11);
+}
+div.world .row div {
+  flex: 1;
+  border: 1px solid #fff;
+}
+
+div.world .row div[cloud] {
+  background-color: #fff;
+}
+
+div.world .row div[ground] {
+  background: url('./images/ground.jpg') no-repeat center center/cover;
+}
+div.world .row div[grass] {
+  background: url('./images/grass.jpg') no-repeat center center/cover;
+}
+div.world .row div[stone] {
+  background: url('./images/stone.jpg') no-repeat center center/cover;
+}
+div.world .row div[treetrunk] {
+  background: url('./images/treetrunk.png') no-repeat center center/cover;
+}
+div.world .row div[leafs] {
+  background: url('./images/leafs.jpg') no-repeat center center/cover;
+}
